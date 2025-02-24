@@ -138,7 +138,7 @@ if submitted:
     
     # Preprocess input
     processed_data = preprocess_input(input_data)
-    model = joblib.load('best_model.pkl')
+    model = joblib.load('ML Model/best_model.pkl')
     # Ensure processed data has same columns as training data
     missing_cols = set(model.feature_names_in_) - set(processed_data.columns)
     for col in missing_cols:
