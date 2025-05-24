@@ -15,6 +15,7 @@ A comprehensive end-to-end **Customer Churn Prediction System** that uses machin
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Project Workflow](#project-workflow)
+- [Prerequisites](#prerequisites)
 ---
 
 ## 📝 Project Overview
