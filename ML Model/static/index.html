@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churn Prediction App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Customer Churn Prediction</h1>
+            <p>Enter customer information to predict churn probability</p>
+        </header>
+
+        <div class="main-content">
+            <form id="churn-form">
+                <div class="form-section">
+                    <h2><i class="fas fa-user"></i> Personal Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="18" max="100" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select id="state" name="state" required>
+                                <option value="">Select state</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="number_of_referrals">Number of Referrals</label>
+                            <input type="number" id="number_of_referrals" name="number_of_referrals" min="0" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-phone-alt"></i> Service Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tenure_in_months">Tenure (Months)</label>
+                            <input type="number" id="tenure_in_months" name="tenure_in_months" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone_service">Phone Service</label>
+                            <select id="phone_service" name="phone_service" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="multiple_lines">Multiple Lines</label>
+                            <select id="multiple_lines" name="multiple_lines" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="internet_service">Internet Service</label>
+                            <select id="internet_service" name="internet_service" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="internet_type">Internet Type</label>
+                            <select id="internet_type" name="internet_type" required>
+                                <option value="">Select option</option>
+                                <option value="DSL">DSL</option>
+                                <option value="Fiber Optic">Fiber Optic</option>
+                                <option value="Cable">Cable</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="online_security">Online Security</label>
+                            <select id="online_security" name="online_security" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="online_backup">Online Backup</label>
+                            <select id="online_backup" name="online_backup" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="device_protection_plan">Device Protection</label>
+                            <select id="device_protection_plan" name="device_protection_plan" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premium_support">Premium Support</label>
+                            <select id="premium_support" name="premium_support" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="streaming_tv">Streaming TV</label>
+                            <select id="streaming_tv" name="streaming_tv" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="streaming_movies">Streaming Movies</label>
+                            <select id="streaming_movies" name="streaming_movies" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="streaming_music">Streaming Music</label>
+                            <select id="streaming_music" name="streaming_music" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="unlimited_data">Unlimited Data</label>
+                            <select id="unlimited_data" name="unlimited_data" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paperless_billing">Paperless Billing</label>
+                            <select id="paperless_billing" name="paperless_billing" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-money-bill-wave"></i> Billing Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="monthly_charge">Monthly Charge ($)</label>
+                            <input type="number" id="monthly_charge" name="monthly_charge" min="0" step="0.01" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="total_charges">Total Charges ($)</label>
+                            <input type="number" id="total_charges" name="total_charges" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="total_refunds">Total Refunds ($)</label>
+                            <input type="number" id="total_refunds" name="total_refunds" min="0" step="0.01" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="total_extra_data_charges">Extra Data Charges ($)</label>
+                            <input type="number" id="total_extra_data_charges" name="total_extra_data_charges" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="total_long_distance_charges">Long Distance Charges ($)</label>
+                            <input type="number" id="total_long_distance_charges" name="total_long_distance_charges" min="0" step="0.01" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="total_revenue">Total Revenue ($)</label>
+                            <input type="number" id="total_revenue" name="total_revenue" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-file-contract"></i> Contract Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="value_deal">Value Deal</label>
+                            <select id="value_deal" name="value_deal" required>
+                                <option value="">Select option</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contract">Contract Type</label>
+                            <select id="contract" name="contract" required>
+                                <option value="">Select option</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="payment_method">Payment Method</label>
+                            <select id="payment_method" name="payment_method" required>
+                                <option value="">Select option</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" id="predict-btn">Predict Churn</button>
+                    <button type="button" id="reset-btn">Reset Form</button>
+                </div>
+            </form>
+
+            <div id="results" class="hidden">
+                <h2>Prediction Results</h2>
+                <div class="result-card">
+                    <div class="prediction">
+                        <h3>Customer Status:</h3>
+                        <div id="prediction-value" class="prediction-value"></div>
+                    </div>
+                    
+                    <div class="probability">
+                        <h3>Churn Probability:</h3>
+                        <div class="progress-container">
+                            <div id="probability-bar" class="progress-bar"></div>
+                            <span id="probability-value">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-importance hidden" id="feature-importance-section">
+                    <h3>Top Features Influencing Prediction</h3>
+                    <div id="feature-importance-chart"></div>
+                </div>
+            </div>
+            </div>
+    <script src="script.js"></script>
+</body>
+</html>
