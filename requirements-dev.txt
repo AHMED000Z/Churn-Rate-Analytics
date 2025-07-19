@@ -1,0 +1,42 @@
+# Development Requirements
+# Additional packages for development environment
+
+## Testing
+pytest-mock==3.12.0
+pytest-xdist==3.3.1
+factory-boy==3.3.0
+faker==20.1.0
+
+## Code Quality
+isort==5.12.0
+pre-commit==3.5.0
+bandit==1.7.5
+safety==2.3.5
+
+## Type Checking
+types-requests==2.31.0.10
+types-PyYAML==6.0.12.12
+
+## Documentation
+mkdocs==1.5.3
+mkdocs-material==9.4.8
+mkdocstrings[python]==0.24.0
+
+## Performance Profiling
+memory-profiler==0.61.0
+line-profiler==4.1.1
+
+## Database Tools
+alembic==1.12.1
+sqlalchemy==2.0.23
+
+## API Testing
+locust==2.17.0
+
+## Jupyter Extensions
+jupyterlab==4.0.8
+nbconvert==7.11.0
+
+## Linting & Formatting
+autopep8==2.0.4
+pylint==3.0.3

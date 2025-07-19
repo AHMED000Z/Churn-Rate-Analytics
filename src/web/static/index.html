@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> Customer Churn Prediction</h1>
+                <p>Predict customer churn probability using advanced machine learning</p>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="model-status">Loading...</span>
+                    <span class="stat-label">Model Status</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="features-count">-</span>
+                    <span class="stat-label">Features</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="form-container">
+                <form id="churn-form" class="prediction-form">
+                    <!-- Personal Information Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-user"></i> Personal Information</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" name="age" min="18" max="100" required>
+                                <small>Age between 18-100 years</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select state</option>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="number_of_referrals">Number of Referrals</label>
+                                <input type="number" id="number_of_referrals" name="number_of_referrals" min="0" max="100" value="0" required>
+                                <small>Number of customers referred</small>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Service Information Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-cog"></i> Service Information</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="tenure_in_months">Tenure (Months)</label>
+                                <input type="number" id="tenure_in_months" name="tenure_in_months" min="0" max="120" required>
+                                <small>Customer tenure in months</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="value_deal">Value Deal</label>
+                                <select id="value_deal" name="value_deal" required>
+                                    <option value="">Select deal</option>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contract">Contract Type</label>
+                                <select id="contract" name="contract" required>
+                                    <option value="">Select contract</option>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="payment_method">Payment Method</label>
+                                <select id="payment_method" name="payment_method" required>
+                                    <option value="">Select payment method</option>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Service Features Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-wifi"></i> Service Features</h2>
+                        
+                        <div class="form-grid form-grid-3">
+                            <div class="form-group">
+                                <label for="phone_service">Phone Service</label>
+                                <select id="phone_service" name="phone_service" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="multiple_lines">Multiple Lines</label>
+                                <select id="multiple_lines" name="multiple_lines" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="internet_service">Internet Service</label>
+                                <select id="internet_service" name="internet_service" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="internet_type">Internet Type</label>
+                                <select id="internet_type" name="internet_type" required>
+                                    <option value="">Select type</option>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="online_security">Online Security</label>
+                                <select id="online_security" name="online_security" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="online_backup">Online Backup</label>
+                                <select id="online_backup" name="online_backup" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="device_protection_plan">Device Protection</label>
+                                <select id="device_protection_plan" name="device_protection_plan" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="premium_support">Premium Support</label>
+                                <select id="premium_support" name="premium_support" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="streaming_tv">Streaming TV</label>
+                                <select id="streaming_tv" name="streaming_tv" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="streaming_movies">Streaming Movies</label>
+                                <select id="streaming_movies" name="streaming_movies" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="streaming_music">Streaming Music</label>
+                                <select id="streaming_music" name="streaming_music" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="unlimited_data">Unlimited Data</label>
+                                <select id="unlimited_data" name="unlimited_data" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="paperless_billing">Paperless Billing</label>
+                                <select id="paperless_billing" name="paperless_billing" required>
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Financial Information Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-dollar-sign"></i> Financial Information</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="monthly_charge">Monthly Charge ($)</label>
+                                <input type="number" id="monthly_charge" name="monthly_charge" step="0.01" min="0" max="1000" required>
+                                <small>Monthly service charge</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="total_charges">Total Charges ($)</label>
+                                <input type="number" id="total_charges" name="total_charges" step="0.01" min="0" max="50000" required>
+                                <small>Total amount charged</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="total_refunds">Total Refunds ($)</label>
+                                <input type="number" id="total_refunds" name="total_refunds" step="0.01" min="0" max="5000" value="0" required>
+                                <small>Total refunds given</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="total_extra_data_charges">Extra Data Charges ($)</label>
+                                <input type="number" id="total_extra_data_charges" name="total_extra_data_charges" step="0.01" min="0" max="5000" value="0" required>
+                                <small>Extra data usage charges</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="total_long_distance_charges">Long Distance Charges ($)</label>
+                                <input type="number" id="total_long_distance_charges" name="total_long_distance_charges" step="0.01" min="0" max="5000" value="0" required>
+                                <small>Long distance call charges</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="total_revenue">Total Revenue ($)</label>
+                                <input type="number" id="total_revenue" name="total_revenue" step="0.01" min="0" max="50000" required>
+                                <small>Total revenue from customer</small>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-predict" id="predict-btn">
+                            <i class="fas fa-magic"></i>
+                            Predict Churn
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-container" id="results-section" style="display: none;">
+                <div class="results-header">
+                    <h2><i class="fas fa-chart-bar"></i> Prediction Results</h2>
+                </div>
+                
+                <div class="results-grid">
+                    <div class="result-card" id="prediction-card">
+                        <div class="result-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="result-content">
+                            <h3>Prediction</h3>
+                            <p class="result-value" id="prediction-result">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card" id="probability-card">
+                        <div class="result-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="result-content">
+                            <h3>Churn Probability</h3>
+                            <p class="result-value" id="probability-result">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card" id="confidence-card">
+                        <div class="result-icon">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        <div class="result-content">
+                            <h3>Confidence</h3>
+                            <p class="result-value" id="confidence-result">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature Importance Chart -->
+                <div class="chart-container" id="feature-importance-container" style="display: none;">
+                    <h3><i class="fas fa-chart-line"></i> Top Feature Influences</h3>
+                    <canvas id="feature-chart"></canvas>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations-container" id="recommendations-container">
+                    <h3><i class="fas fa-lightbulb"></i> Recommendations</h3>
+                    <div id="recommendations-list"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Making prediction...</p>
+            </div>
+        </div>
+
+        <!-- Error Modal -->
+        <div class="modal" id="error-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-exclamation-circle"></i> Error</h3>
+                    <button class="modal-close" id="close-error-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="error-message">An error occurred</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="close-error-btn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js for feature importance visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
