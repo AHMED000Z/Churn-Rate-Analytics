@@ -606,30 +606,6 @@ export LOG_LEVEL=DEBUG
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
-## 👥 Team
-
-**Project Lead**: Your Name (your.email@example.com)
-**Contributors**: [See Contributors](https://github.com/yourusername/customer-churn-prediction/contributors)
-
----
-
-## 🙏 Acknowledgments
-
-- **Scikit-learn team** for the excellent machine learning library
-- **FastAPI team** for the modern web framework
-- **Streamlit team** for the intuitive app framework
-- **Open source community** for the foundational tools and libraries
-
----
-
-## 📞 Support
-
-- **Documentation**: [Wiki](https://github.com/yourusername/customer-churn-prediction/wiki)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/customer-churn-prediction/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/customer-churn-prediction/discussions)
-- **Email**: your.email@example.com
 
 ---
 
